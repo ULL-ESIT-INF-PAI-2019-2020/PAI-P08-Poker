@@ -1,7 +1,7 @@
 # Práctica 8. Poker. Programación Orientada a Objetos en JS.
 ### Factor de ponderación: 8
 
-### Objetivos
+### Poker
 
 Los objetivos de esta práctica son:
 
@@ -36,7 +36,7 @@ Este documento explica todo lo que se precisa para los ejercicios a realizar.
 
 A pesar de que este documento está escrito en español, se propone que los identificadores que se usen en el código JavaScript utilicen la terminología en inglés para el entorno a modelar en los programas: cartas (cards), mazo de cartas (deck), etc.
 
-### Una clase para representar cartas
+## Objetos para representar cartas
 La baraja francesa está dividida en cuatro palos (en inglés: *suit*), dos de color rojo y dos de color negro:
 
 * ♠ Spades (picas).
@@ -93,7 +93,7 @@ así que, por ejemplo, todas las picas superan a todos los corazones, y así suc
 Una vez diseñadas las cartas, el siguiente paso será definir un mazo (baraja completa). 
 Puesto que un mazo está compuesto de cartas, es natural que cada mazo contenga como atributo un conjunto de cartas.
 Defina una clase `Deck` para modelar un mazo de cartas. 
-El constructor de esa clase deberá inicializar el mazo con el conjunto estándar de 52 cartas.
+El constructor por defecto deberá inicializar el mazo con el conjunto estándar de 52 cartas.
 La clase `Deck` ha de disponer de un método que permita imprimir el mazo:
 
 ```
@@ -127,7 +127,8 @@ hand = new Hand('new hand')
 console.log(hand.cards);			// -> [ ]
 console.log(hand.label);			// -> new hand
 ```
-La clase `Hand` también ha de disponer, como se ha expuesto, de métodos `popCard()` y `addCard()`:
+La clase Hand también ha de disponer, como se ha expuesto, de métodos `popCard()` y `addCard()`:
+
 
 ```javascript
 let deck = new Deck();
@@ -137,33 +138,28 @@ console.log(hand);		// -> King of Spades
 ```
 
 Un paso adicional es disponer de un método `moveCards()` que toma dos argumentos: una mano y el número de cartas a repartir.
-`moveCards()` toma el número de cartas a repartir del mazo y las coloca en la mano.
+`moveCards()i` toma el número de cartas a repartir del mazo y las coloca en la mano.
 
 En algunos juegos, las cartas se mueven de una mano a otra, o de una mano al mazo. Se puede usar `moveCards()` para cualquiera de estas operaciones.
 
-Ejercicio 1. Escriba un método de `Deck` llamado `dealHands()` que toma dos parámetros: el número de manos y el número de cartas por mano. 
-Debe crear el número apropiado de manos, repartir el número apropiado de cartas por mano y devolver una lista de Manos.
+Ejercicio 1. Escriba un método de `Deck` llamado `dealHands()` que toma dos parámetros: el número de manos y el número de cartas por mano. Debe crear el número apropiado de manos, repartir el número apropiado de cartas por mano y devolver una lista de Manos.
 
-Ejercicio 2. En el póker las manos son de 5 cartas. 
-Las siguientes son las posibles manos en el póquer, en orden creciente de valor y decreciente de probabilidad:
+Ejercicio 2. En el póker las manos son de 5 cartas. Las siguientes son las posibles manos en el póquer, en orden creciente de valor y decreciente de probabilidad:
 
-* Pareja: dos cartas con el mismo valor.
-* Doble par: dos pares de cartas con el mismo valor.
-* Trío: tres cartas con el mismo valor.
-* Escalera: cinco cartas con valores en secuencia (los ases pueden ser altos o bajos, así que el As-2-3-4-5 es una escalera y también lo es el 10-Jack-Queen-King-Ace, pero el Queen-King-Ace-2-3 no lo es).
-* Color: cinco cartas con el mismo palo.
-* Full: tres cartas con un valor, dos cartas con otro.
-* Poker: cuatro cartas con el mismo valor.
-* Escalera real: cinco cartas en secuencia (como se definió anteriormente) y con el mismo palo.
+Pareja: dos cartas con el mismo valor.
+Doble par: dos pares de cartas con el mismo valor.
+Trío: tres cartas con el mismo valor.
+Escalera: cinco cartas con valores en secuencia (los ases pueden ser altos o bajos, así que el As-2-3-4-5 es una escalera y también lo es el 10-Jack-Queen-King-Ace, pero el Queen-King-Ace-2-3 no lo es).
+Color: cinco cartas con el mismo palo.
+Full: tres cartas con un valor, dos cartas con otro.
+Poker: cuatro cartas con el mismo valor.
+Escalera real: cinco cartas en secuencia (como se definió anteriormente) y con el mismo palo.
 
 El objetivo de este ejercicio es estimar la probabilidad de conseguir estas diversas manos.
 
-2.1 Desarrolle un programa `poker-hand.js` que implemente una clase `PokerHand()` que representará una mano de Póker.
-Escriba un programa `poker-game.js` que reparta siete manos de 
-[póquer de 7-cartas](https://en.wikipedia.org/wiki/Seven-card_stud)
-
-(http://people.math.sfu.ca/~alspach/comp20/)
-
+2.1 Desarrolle una clase poker-hand.js que implemente una clase PokerHand() que representará una mano de Póker.
+Escriba un programa poker-game.js que reparta siete manos de póquer de 7-cartas (http://people.math.sfu.ca/~alspach/comp20/)
+(https://en.wikipedia.org/wiki/Seven-card_stud)
 y comprueba si alguna de ellas contiene una escalera.
 
 2.2 Añada métodos a poker-hand.js llamados hasPair(), hasTwopair(), etc. que devuelven Verdadero o Falso según si la mano cumple o no los criterios pertinentes. Su código debería funcionar correctamente para manos que contengan cualquier número de cartas (aunque 5 y 7 son los tamaños más comunes).
